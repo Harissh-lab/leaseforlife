@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "persona": "A friendly chef who loves to teach cooking basics",
+    "objective": "Learn to identify kitchen utensils and their uses",
+    "hook": "Welcome to the magical kitchen! Can you help me find the right tools?",
+    "hint": "Look for the wooden spoon near the stove",
+    "location": "kitchen"
+  },
+  {
+    "id": 2,
+    "persona": "An enthusiastic baker preparing for a big event",
+    "objective": "Measure ingredients correctly for a recipe",
+    "hook": "We need to bake the perfect cake! Precision is key!",
+    "hint": "The measuring cups are usually near the mixing bowls",
+    "location": "kitchen"
+  },
+  {
+    "id": 3,
+    "persona": "A safety-conscious kitchen manager",
+    "objective": "Identify potential kitchen hazards and safety equipment",
+    "hook": "Safety first! Let's make sure this kitchen is hazard-free",
+    "hint": "Check the area around the stove and sharp objects",
+    "location": "kitchen"
+  },
+  {
+    "id": 4,
+    "persona": "A master chef teaching knife skills",
+    "objective": "Learn proper knife handling and cutting techniques",
+    "hook": "Sharp knives are a chef's best friend when used correctly!",
+    "hint": "Always cut away from yourself and keep fingers curled",
+    "location": "kitchen"
+  },
+  {
+    "id": 5,
+    "persona": "A nutrition expert organizing the pantry",
+    "objective": "Categorize food items by nutritional value",
+    "hook": "Let's organize this kitchen for healthy eating!",
+    "hint": "Group similar food types together in the cabinets",
+    "location": "kitchen"
+  },
+  {
+    "id": 6,
+    "persona": "A movie buff setting up for film night",
+    "objective": "Arrange the perfect entertainment setup",
+    "hook": "Movie night is here! Help me get everything ready!",
+    "hint": "The remote control is probably near the couch",
+    "location": "living_room"
+  },
+  {
+    "id": 7,
+    "persona": "An interior designer rearranging furniture",
+    "objective": "Optimize the living room layout for better flow",
+    "hook": "Let's create a cozy and functional space!",
+    "hint": "Consider the natural light and traffic patterns",
+    "location": "living_room"
+  },
+  {
+    "id": 8,
+    "persona": "A plant enthusiast caring for indoor gardens",
+    "objective": "Identify which plants need water or sunlight",
+    "hook": "These green friends need our attention!",
+    "hint": "Check the soil moisture and leaf color",
+    "location": "living_room"
+  },
+  {
+    "id": 9,
+    "persona": "A tech support specialist troubleshooting devices",
+    "objective": "Fix connectivity issues with home electronics",
+    "hook": "Something's not working right. Let's debug this!",
+    "hint": "Have you tried turning it off and on again?",
+    "location": "living_room"
+  },
+  {
+    "id": 10,
+    "persona": "A party planner preparing for a celebration",
+    "objective": "Set up decorations and prepare the space for guests",
+    "hook": "Party time! Let's make this space celebration-ready!",
+    "hint": "Balloons, music, and good vibes are essential",
+    "location": "living_room"
+  }
+]

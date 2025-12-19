@@ -1,0 +1,172 @@
+/* ============================================
+   LEVEL MAP CONTAINER
+   ============================================ */
+
+.level-map-container {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  height: 280px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.level-map {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   LEVEL STONE WRAPPER & POSITIONING
+   ============================================ */
+
+.level-stone-wrapper {
+  position: absolute;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.level-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ============================================
+   LEVEL STONE BASE
+   ============================================ */
+
+.level-stone {
+  position: relative;
+  width: 72px;
+  height: 80px;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-stone:hover:not(.locked) {
+  transform: scale(1.15);
+}
+
+.level-stone.locked {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================
+   STONE IMAGE
+   ============================================ */
+
+.stone-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Stone Status Styles */
+.level-stone.current .stone-image {
+  filter: brightness(1.3);
+  animation: imageGlow 2s ease-in-out infinite;
+}
+
+.level-stone.completed .stone-image {
+  filter: hue-rotate(200deg) brightness(0.9);
+}
+
+.level-stone.locked .stone-image {
+  filter: grayscale(100%) brightness(0.7);
+}
+
+@keyframes imageGlow {
+  0%, 100% {
+    filter: brightness(1.3);
+    drop-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+  }
+  50% {
+    filter: brightness(1.5);
+    drop-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+  }
+}
+
+/* ============================================
+   STONE CONTENT & LABELS
+   ============================================ */
+
+.stone-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.level-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+
+.level-number.large {
+  font-size: 32px;
+}
+
+.check-mark {
+  font-size: 20px;
+  color: #4caf50;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* ============================================
+   PULSE EFFECT FOR CURRENT LEVEL
+   ============================================ */
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(76, 175, 80, 0.6);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}

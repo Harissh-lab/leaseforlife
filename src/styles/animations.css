@@ -1,0 +1,57 @@
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-5px, 5px) rotate(-1deg); }
+  20% { transform: translate(5px, -5px) rotate(1deg); }
+  30% { transform: translate(-5px, -5px) rotate(-1deg); }
+  40% { transform: translate(5px, 5px) rotate(1deg); }
+  50% { transform: translate(-5px, 0) rotate(-1deg); }
+  60% { transform: translate(5px, -5px) rotate(1deg); }
+  70% { transform: translate(-5px, 5px) rotate(-1deg); }
+  80% { transform: translate(5px, 0) rotate(1deg); }
+  90% { transform: translate(-5px, -5px) rotate(-1deg); }
+}
+
+@keyframes colorInvert {
+  0% { filter: invert(0); }
+  25% { filter: invert(1); }
+  50% { filter: invert(0); }
+  75% { filter: invert(1); }
+  100% { filter: invert(0); }
+}
+
+@keyframes glitchScan {
+  0% { clip-path: inset(0 0 100% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes speakingPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+  }
+}
+
+@keyframes centeredCharacterPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 60px rgba(76, 175, 80, 0.6),
+      0 0 100px rgba(76, 175, 80, 0.3),
+      inset 0 0 30px rgba(76, 175, 80, 0.2);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 
+      0 0 100px rgba(76, 175, 80, 0.8),
+      0 0 150px rgba(76, 175, 80, 0.5),
+      inset 0 0 40px rgba(76, 175, 80, 0.3);
+  }
+}
