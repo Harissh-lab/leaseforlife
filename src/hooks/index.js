@@ -1,5 +1,4 @@
 /**
- * Export all custom hooks
+ * Custom hooks for the LeaseForLife game
  */
-export { useGameLevel } from './useGameLevel';
 export { useUIEffects } from './useUIEffects';

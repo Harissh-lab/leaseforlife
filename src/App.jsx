@@ -3,60 +3,34 @@ import './App.css'
 import levelsData from './data/levels.json'
 import LevelMap from './components/LevelMap'
 import XylaxVoice from './components/XylaxVoice'
-import { GAME_CONFIG, LEVEL_RANGES, STORAGE_KEYS } from './constants/config'
-import { 
-  loadSavedLevel, 
-  saveLevelToStorage, 
+import { GAME_CONFIG } from './constants/config'
+import {
+  loadSavedLevel,
+  saveLevelToStorage,
   clearLevelFromStorage,
   getBackgroundForLevel,
   getCharacterForLevel,
 } from './utils/gameHelpers'
+import { useUIEffects } from './hooks/useUIEffects'
 
 function App() {
   const [currentLevel, setCurrentLevel] = useState(loadSavedLevel)
   const [showHint, setShowHint] = useState(false)
-  const [glitchActive, setGlitchActive] = useState(false)
-  const [backgroundTransition, setBackgroundTransition] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [isSessionActive, setIsSessionActive] = useState(false)
 
+  const { glitchActive, backgroundTransition } = useUIEffects(currentLevel)
   const levelData = levelsData.find(level => level.id === currentLevel) || levelsData[0]
   const currentBackground = getBackgroundForLevel(currentLevel, levelData.location)
   const currentCharacter = getCharacterForLevel(currentLevel)
-
-  // Trigger glitch effect when level changes
-  useEffect(() => {
-    if (currentLevel > 1) {
-      setGlitchActive(true)
-      setBackgroundTransition(true)
-      
-      const timer = setTimeout(() => {
-        setGlitchActive(false)
-      }, GAME_CONFIG.GLITCH_DURATION)
-
-      const bgTimer = setTimeout(() => {
-        setBackgroundTransition(false)
-      }, GAME_CONFIG.BACKGROUND_TRANSITION_DURATION)
-
-      return () => {
-        clearTimeout(timer)
-        clearTimeout(bgTimer)
-      }
-    }
-  }, [currentLevel])
 
   // Save current level to localStorage
   useEffect(() => {
     saveLevelToStorage(currentLevel)
   }, [currentLevel])
 
-  // Log session state changes (for debugging)
-  useEffect(() => {
-    console.log('Session active:', isSessionActive)
-  }, [isSessionActive])
-
   const handleLevelComplete = () => {
-    if (currentLevel < 10) {
+    if (currentLevel < 5) {
       setCurrentLevel(prev => prev + 1)
     } else {
       alert('Congratulations! You completed all levels!')
@@ -84,18 +58,18 @@ function App() {
   return (
     <div className={`app-container ${glitchActive ? 'glitch-active' : ''}`}>
       {/* Background Layer 1 (outgoing) */}
-      <div 
+      <div
         className={`background-layer ${backgroundTransition ? 'fade-out' : ''} ${isSessionActive ? 'dimmed' : ''}`}
-        style={{ 
+        style={{
           backgroundImage: `url(${currentBackground})`,
         }}
       />
-      
+
       {/* Background Layer 2 (incoming) - for cross-fade */}
       {backgroundTransition && (
-        <div 
+        <div
           className="background-layer fade-in"
-          style={{ 
+          style={{
             backgroundImage: `url(${currentBackground})`,
           }}
         />
@@ -108,7 +82,7 @@ function App() {
       {isSessionActive && (
         <div className="voice-session-modal">
           <div className="modal-character-display">
-            <img 
+            <img
               src={currentCharacter.image}
               alt={currentCharacter.name}
               className="modal-character-image"
@@ -123,7 +97,7 @@ function App() {
         <div className="top-left-corner">
           <div className="level-badge">
             <h1 className="text-3xl font-bold text-white">
-              Level {currentLevel} / 10
+              Level {currentLevel} / 5
             </h1>
             <p className="text-sm text-gray-200 uppercase tracking-wide">
               {levelData.location.replace('_', ' ')}
@@ -136,15 +110,16 @@ function App() {
           <div className="agent-voice-container">
             {/* Agent Image */}
             <div className={`agent-image ${isSpeaking ? 'speaking' : ''}`}>
-              <img 
+              <img
                 src={currentCharacter.image}
                 alt={currentCharacter.name}
                 className="w-full h-full object-cover"
               />
             </div>
             {/* Voice Controller */}
-            <XylaxVoice 
+            <XylaxVoice
               currentLevelData={levelData}
+              levelId={currentLevel}
               onLevelWin={handleLevelComplete}
               onSpeakingChange={setIsSpeaking}
               onSessionActiveChange={setIsSessionActive}
@@ -154,7 +129,7 @@ function App() {
 
         {/* Level Map - Positioned on the carpet area */}
         {levelData.location === 'kitchen' && currentLevel <= LEVEL_RANGES.KITCHEN.max && (
-          <LevelMap 
+          <LevelMap
             currentLevel={currentLevel}
             onLevelSelect={handleLevelSelect}
             onStartLevel={() => {
@@ -215,7 +190,7 @@ function App() {
             </button>
             <button
               onClick={handleLevelComplete}
-              disabled={currentLevel === 10}
+              disabled={currentLevel === 5}
               className="nav-button px-5 py-2 bg-green-600 text-white rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all font-semibold text-sm"
             >
               Next →

@@ -42,12 +42,5 @@ export const saveLevelToStorage = (level) => {
  * Clear level from localStorage
  */
 export const clearLevelFromStorage = () => {
-  localStorage.removeItem('currentLevel');
-};
-
-/**
- * Check if a level is in a specific range
- */
-export const isLevelInRange = (level, minLevel, maxLevel) => {
-  return level >= minLevel && level <= maxLevel;
-};
+  localStorage.removeItem('currentLevel')
+}

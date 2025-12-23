@@ -22,7 +22,7 @@ export default function NavigationControls({ currentLevel, onPrevious, onNext, o
       </button>
       <button
         onClick={onNext}
-        disabled={currentLevel === 10}
+        disabled={currentLevel === 5}
         className="nav-button px-5 py-2 bg-green-600 text-white rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all font-semibold text-sm"
         title="Go to next level"
       >

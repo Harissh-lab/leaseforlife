@@ -12,7 +12,7 @@ export const useGameLevel = () => {
   }, [currentLevel]);
 
   const nextLevel = () => {
-    setCurrentLevel(prev => (prev < 10 ? prev + 1 : prev));
+    setCurrentLevel(prev => (prev < 5 ? prev + 1 : prev));
   };
 
   const previousLevel = () => {
@@ -20,7 +20,7 @@ export const useGameLevel = () => {
   };
 
   const selectLevel = (level) => {
-    if (level >= 1 && level <= 10) {
+    if (level >= 1 && level <= 5) {
       setCurrentLevel(level);
     }
   };
