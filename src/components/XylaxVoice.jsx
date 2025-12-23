@@ -47,16 +47,20 @@ const XylaxVoice = ({ currentLevelData, onLevelWin, onSpeakingChange, onSessionA
     // Try to start conversation if data exists
     if (currentLevelData) {
       const { persona, objective, hook } = currentLevelData;
+      const agentId = import.meta.env.VITE_REACT_APP_ELEVENLABS_AGENT_ID;
+      console.log('Agent ID:', agentId);
       try {
         await conversation.startSession({
+          agentId,
           dynamicVariables: {
             persona,
             objective,
             hook,
           },
         });
+        console.log('Session started successfully');
       } catch (error) {
-        console.error('Failed to start conversation:', error.message);
+        console.error('Failed to start conversation:', error);
         // Modal still shows even if conversation fails
       }
     }
